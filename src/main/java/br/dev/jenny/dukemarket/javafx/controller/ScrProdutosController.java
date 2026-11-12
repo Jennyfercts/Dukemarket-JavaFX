@@ -28,7 +28,7 @@ public class ScrProdutosController implements Initializable {
     private boolean flagNovo;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class - Produtos
      *
      * */
      

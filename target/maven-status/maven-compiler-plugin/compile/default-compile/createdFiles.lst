@@ -1,7 +1,10 @@
 br\dev\jenny\dukemarket\javafx\PrimaryController.class
 br\dev\jenny\dukemarket\javafx\DAO\ProdutoDAO.class
+br\dev\jenny\dukemarket\javafx\controller\ScrClientesController.class
 br\dev\jenny\dukemarket\javafx\controller\ScrProdutosController.class
 module-info.class
+br\dev\jenny\dukemarket\javafx\model\Cliente.class
+br\dev\jenny\dukemarket\javafx\DAO\ClienteDAO.class
 br\dev\jenny\dukemarket\javafx\model\Produto.class
 br\dev\jenny\dukemarket\javafx\App.class
 br\dev\jenny\dukemarket\javafx\controller\MenuPrincipalController.class
