@@ -28,7 +28,7 @@ public class ClienteDAO {
             + "WHERE id = ?";
 
     private static final String SQL_UPDATE = "UPDATE cliente SET nome = ?,"
-            + "cpf = ?, endereço = ?, cidade = ?, uf = ?, dataCadastro = ?"
+            + "cpf = ?, endereço = ?, cidade = ?, uf = ?"
             + "WHERE id = ?";
 
     private static final String SQL_DELETE = "DELETE FROM cliente WHERE id = ?";
@@ -46,16 +46,16 @@ public class ClienteDAO {
         try {
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setString(1, c.getNome());
-            stmt.setString(2, c.getCPF());
+            stmt.setString(2, c.getCpf());
             stmt.setString(3, c.getEndereco());
             stmt.setString(4, c.getCidade());
-            stmt.setString(5, c.getUF());
-            stmt.setString(6, c.getDataCadastro());
+            stmt.setString(5, c.getUf());
+            stmt.setString(6, c.getDataCadastroISO8601());
 
             // Executa a query
             int auxRetorno = stmt.executeUpdate();
 
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.INFO, "Inclusao: {0}", auxRetorno);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.INFO, "Inclusao: {0} {1}", auxRetorno);
 
         } catch (SQLException sQLException) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null,
@@ -92,10 +92,10 @@ public class ClienteDAO {
                 c = new Cliente();
                 c.setId(rs.getInt("id"));
                 c.setNome(rs.getString("nome"));
-                c.setCPF(rs.getString("cpf"));
+                c.setCpf(rs.getString("cpf"));
                 c.setEndereco(rs.getString("endereço"));
                 c.setCidade(rs.getString("cidade"));
-                c.setUF(rs.getString("uf"));
+                c.setUf(rs.getString("uf"));
                 
                 
                 c.setDataCadastro(rs.getString("dataCadastro"));
@@ -130,10 +130,10 @@ public class ClienteDAO {
                 c = new Cliente();
                 c.setId(rs.getInt("id"));
                 c.setNome(rs.getString("nome"));
-                c.setCPF(rs.getString("cpf"));
+                c.setCpf(rs.getString("cpf"));
                 c.setEndereco(rs.getString("endereço"));
                 c.setCidade(rs.getString("cidade"));
-                c.setUF(rs.getString("uf"));
+                c.setUf(rs.getString("uf"));
                 c.setDataCadastro(rs.getString("dataCadastro"));
             }
 
@@ -160,10 +160,11 @@ public class ClienteDAO {
         try {
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, c.getNome());
-            stmt.setString(2, c.getCPF());
+            stmt.setString(2, c.getCpf());
             stmt.setString(3, c.getEndereco());
             stmt.setString(4, c.getCidade());
-            stmt.setString(5, c.getUF());
+            stmt.setString(5, c.getUf());
+            
             stmt.setInt(6, c.getId());
 
             // Executa a query

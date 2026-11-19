@@ -1,20 +1,31 @@
 package br.dev.jenny.dukemarket.javafx.controller;
 
+import br.dev.jenny.dukemarket.javafx.App;
 import br.dev.jenny.dukemarket.javafx.DAO.ProdutoDAO;
 import br.dev.jenny.dukemarket.javafx.model.Produto;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 
 /**
@@ -225,17 +236,37 @@ public class ScrProdutosController implements Initializable {
                 pDAO.update(paux);
             }
             
-            carregaDados();
+            this.carregaDados();
            
     }
         
         @FXML
         public void btnExcluirClick(){
-            if(!this.flagNovo){
-                pDAO.delete( Integer.valueOf(txtId.getText()));
-                this.carregaDados();
-            }
-        }
-        
+            if(this.pClicked != null){
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert. setTitle("Confirma Exclusão do Produto?");
+                alert.setHeaderText(pClicked.getDescricao());
+                alert.setContentText("Tem certeza que deseja excluir?");
+                
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    this.pDAO.delete(this.pClicked.getId());
+                    
+                    
+                } 
+                this.tblProduto.getSelectionModel().clearSelection();
+                pClicked = null;
+                } else {
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert. setTitle("Ops!");
+                    alert.setHeaderText("Atenção!");
+                    alert.setContentText("Você deve selecionar um registro antes de excluí-lo!");
+                    
+                    alert.showAndWait();
+                }
+    }
 }
+        
+        
+
 

@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.dev.jenny.dukemarket.javafx.controller.ScrClientesController">
    <children>
-      <TableView fx:id="tblCliente" layoutX="32.0" layoutY="23.0" prefHeight="254.0" prefWidth="543.0">
+      <TableView fx:id="tblCliente" layoutX="32.0" layoutY="23.0" onMouseClicked="#tblClienteOnMouseClicked" prefHeight="254.0" prefWidth="543.0">
         <columns>
           <TableColumn fx:id="tcoId" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="tcoNome" prefWidth="75.0" text="Nome" />
@@ -37,6 +37,6 @@
       <TextField fx:id="txtUF" layoutX="565.0" layoutY="364.0" />
       <Button fx:id="btnNovo" layoutX="619.0" layoutY="23.0" mnemonicParsing="false" onAction="#btnNovoClick" prefHeight="25.0" prefWidth="132.0" text="Novo" />
       <Button fx:id="btnSalvar" layoutX="619.0" layoutY="64.0" mnemonicParsing="false" onAction="#btnSalvarClick" prefHeight="25.0" prefWidth="132.0" text="Salvar" />
-      <Button fx:id="btnSair" layoutX="619.0" layoutY="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Sair" />
+      <Button fx:id="btnSair" layoutX="619.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnSairClick" prefHeight="25.0" prefWidth="132.0" text="Sair" />
    </children>
 </AnchorPane>

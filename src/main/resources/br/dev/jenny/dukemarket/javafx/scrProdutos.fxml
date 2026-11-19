@@ -45,9 +45,9 @@
       </AnchorPane>
       <AnchorPane layoutX="440.0" layoutY="302.0" prefHeight="155.0" prefWidth="219.0">
          <children>
-            <Button fx:id="btnNovo" layoutX="16.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnNovoClick" prefHeight="25.0" prefWidth="187.0" text="Novo" />
-            <Button fx:id="btnSalvar" layoutX="16.0" layoutY="83.0" mnemonicParsing="false" onAction="#btnSalvarClick" prefHeight="25.0" prefWidth="187.0" text="Salvar" />
-            <Button fx:id="btnExcluir" layoutX="16.0" layoutY="116.0" mnemonicParsing="false" onMouseClicked="#btnExcluirClick" prefHeight="25.0" prefWidth="187.0" text="Excluir" />
+            <Button fx:id="btnNovo" layoutX="16.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnNovoClick" prefHeight="25.0" prefWidth="187.0" text="Novo" />
+            <Button fx:id="btnSalvar" layoutX="16.0" layoutY="65.0" mnemonicParsing="false" onAction="#btnSalvarClick" prefHeight="25.0" prefWidth="187.0" text="Salvar" />
+            <Button fx:id="btnExcluir" layoutX="16.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#btnExcluirClick" prefHeight="25.0" prefWidth="187.0" text="Excluir" />
          </children>
       </AnchorPane>
    </children>

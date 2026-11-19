@@ -1,23 +1,17 @@
 package br.dev.jenny.dukemarket.javafx.controller;
 
-import br.dev.jenny.dukemarket.javafx.App;
 import br.dev.jenny.dukemarket.javafx.DAO.ClienteDAO;
 import br.dev.jenny.dukemarket.javafx.model.Cliente;
-import br.dev.jenny.dukemarket.javafx.model.Produto;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,7 +36,7 @@ public class ScrClientesController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Vincula as colunas da TableView à classe produto
+        // Vincula as colunas da TableView à classe cliente
         bindColumns();
         
         // Busca dados
@@ -117,7 +111,7 @@ public class ScrClientesController implements Initializable {
 
         tcoCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 
-        tcoEndereco.setCellValueFactory(new PropertyValueFactory<>("endereço"));
+        tcoEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         tcoEndereco.setStyle("-fx-alignment: CENTER_RIGHT;");
 
         tcoCidade.setCellValueFactory(new PropertyValueFactory<>("cidade"));
@@ -176,7 +170,7 @@ public class ScrClientesController implements Initializable {
      * preenchendo os TextFields.
      */
     @FXML
-    public void tblProdutoOnMouseClicked() {
+    public void tblClienteOnMouseClicked() {
 
         // getSelectedItem devolve um objeto Cliente.
         // cClicked representa o Cliente Clicado
@@ -188,20 +182,20 @@ public class ScrClientesController implements Initializable {
             txtId.setEditable(false);
 
             txtNome.setText(cClicked.getNome());
-            txtCPF.setText(cClicked.getCPF());
+            txtCPF.setText(cClicked.getCpf());
 
             txtEndereco.setText(String.valueOf(cClicked.getEndereco()));
             txtCidade.setText(String.valueOf(cClicked.getCidade()));
-            txtUF.setText(String.valueOf(cClicked.getUF()));
+            txtUF.setText(String.valueOf(cClicked.getUf()));
 
-            // Tratamento da data do cadastro:
+            // Tratamento da data do cadastro:   
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             formatter = formatter.withLocale(Locale.US);
             LocalDate date = LocalDate.parse(cClicked.getDataCadastro(), formatter);
 
             dtpDataCadastro.setValue(date);
             dtpDataCadastro.setEditable(false);
-
+          
             this.flagNovo = false;
         }
     }
@@ -213,19 +207,13 @@ public class ScrClientesController implements Initializable {
         @FXML
         public void btnSalvarClick() {
             
-            System.out.println("Passei pelo botao salvar!");
-            
             Cliente caux = new Cliente();
             
             caux.setNome( txtNome.getText());
-            caux.setCPF( txtCPF.getText());
+            caux.setCpf( txtCPF.getText());
             caux.setEndereco( txtEndereco.getText());
             caux.setCidade( txtCidade.getText());
-            caux.setUF( txtUF.getText());
-            
-
-            // Converter LocalDate do dtaPicker para Calendar
-            
+            caux.setUf( txtUF.getText());
             caux.setDataCadastro( dtpDataCadastro.getValue()  );
             
             
@@ -235,14 +223,20 @@ public class ScrClientesController implements Initializable {
                 
             } else {
                 // ATUALIZAÇÃO
-                caux.setId( Integer.valueOf(txtId.getText()));
+                System.out.println("Passei pelo else!!");
+                caux.setId(Integer.parseInt(txtId.getText()));
                 cDAO.update(caux);
             }
             
-            carregaDados();
+            this.carregaDados();
            
     }
         
-    
-
+        
+        @FXML
+        public void btnSairClick(ActionEvent event){
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.close();
+        }
+       
 }

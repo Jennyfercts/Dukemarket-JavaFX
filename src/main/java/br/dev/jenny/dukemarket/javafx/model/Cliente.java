@@ -18,7 +18,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String cpf;
-    private String endereço;
+    private String endereco;
     private String cidade;
     private String uf;
     private Calendar dataCadastro;
@@ -39,20 +39,20 @@ public class Cliente {
         this.nome = nome;
     }
     
-    public String getCPF(){
+    public String getCpf(){
         return cpf;
     }
     
-    public void setCPF(String cpf){
+    public void setCpf(String cpf){
         this.cpf = cpf;
     }
     
     public String getEndereco(){
-        return endereço;
+        return endereco;
     }
     
     public void setEndereco(String endereco){
-        this.endereço = endereço;
+        this.endereco = endereco;
     }
     
     public String getCidade(){
@@ -63,11 +63,11 @@ public class Cliente {
         this.cidade = cidade;
     }
     
-    public String getUF(){
+    public String getUf(){
         return uf;
     }
     
-    public void setUF(String uf){
+    public void setUf(String uf){
         this.uf = uf;
     }
     
@@ -92,9 +92,19 @@ public class Cliente {
         }
     }
 
+     
     public String getDataCadastro() {
         if (this.dataCadastro != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            return sdf.format(this.dataCadastro.getTime());
+        } else {
+            return "";
+        }
+    }
+    
+    public String getDataCadastroISO8601() {
+        if (this.dataCadastro != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             return sdf.format(this.dataCadastro.getTime());
         } else {
             return "";
@@ -106,7 +116,7 @@ public class Cliente {
     public String toString() {
 
         return String.format("%3d | %15s | %30s | %50s | %30s | %3s | %10s", this.id,
-                this.nome, this.cpf, this.endereço, this.cidade,
+                this.nome, this.cpf, this.endereco, this.cidade,
                 this.uf, this.getDataCadastro());
     }
     
